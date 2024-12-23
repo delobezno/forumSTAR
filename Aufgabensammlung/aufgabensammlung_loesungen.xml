@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Form name="formName" language="1.33" autostart="Yes" treeExpand="10" splitbarPos="" printer="Standard" printcount="1">
+<MetaList>
+<Meta name="fml_alsmodulverwendbar" value="j" />
+<Meta name="fml_toplevel" value="n" />
+<Meta name="fml_tsversion_erstellung" value="1610.2" />
+<Meta name="fml_kurzname" value="formName" />
+<Meta name="fml_datumimport_xml" value="14.7.17 13:47" />
+<Meta name="vlt_key_id" value="1" />
+<Meta name="fml_send_package_name" value="" />
+<Meta name="fml_tsversion" value="1610.2" />
+<Meta name="fml_tsversion_compatibility" value="1435.4" />
+</MetaList>
+<VariableDefList>
+<VD type="String" name="s_Name">
+<ID></ID>
+<DN></DN>
+</VD>
+<VD type="String" name="s_Anrede">
+<ID></ID>
+<DN></DN>
+</VD>
+<VD type="String" name="s_Geschlecht">
+<ID></ID>
+<DN></DN>
+</VD>
+<VD type="Numeric" name="n_Alter">
+<ID></ID>
+<Format>#0.######</Format>
+<DN></DN>
+</VD>
+<VD type="Numeric" name="n_Gewicht">
+<ID></ID>
+<Format>#0.######</Format>
+<DN></DN>
+</VD>
+<VD type="String" name="s_Fuehrerschein">
+<ID></ID>
+<DN></DN>
+</VD>
+<VD type="Numeric" name="n_Groesse">
+<ID></ID>
+<Format>0.00</Format>
+<DN></DN>
+</VD>
+</VariableDefList>
+<ST>
+<Label des="Eingabe" sl="No" ov="No">
+<Input ddes="BMI-Rechner">
+<TV ac="Formular" ed="Yes" ides="Anrede eingeben" inputRequiredExt="Always" vr="Yes" setByVariable="Yes" vn="s_Anrede" />
+<TV ac="Formular" ed="Yes" ides="Namen eingeben" inputRequiredExt="Always" vr="Yes" setByVariable="Yes" vn="s_Name" />
+<TV ac="Formular" ed="Yes" ides="Geschlecht angeben" inputRequiredExt="Always" vr="Yes" setByVariable="Yes" vn="s_Geschlecht" />
+<TV ac="Formular" ed="Yes" ides="Alter eingeben" inputRequiredExt="NoValue" vr="Yes" setByVariable="Yes" vn="n_Alter" />
+<TV ac="Formular" ed="Yes" ides="Gewicht eingeben" inputRequiredExt="Always" vr="Yes" setByVariable="Yes" vn="n_Gewicht" />
+<TV ac="Formular" ed="Yes" ides="Führerschein ja/nein?" inputRequiredExt="Always" vr="Yes" setByVariable="Yes" vn="s_Fuehrerschein" />
+<TV ac="Formular" ed="Yes" ides="Größe in Metern eingeben" inputRequiredExt="Always" vr="Yes" setByVariable="Yes" vn="n_Groesse" />
+</Input>
+</Label>
+<Label des="Ausgabe" sl="No" ov="No">
+<P style="default" noBreak="No">
+<Num>
+<Adir>
+<FontAttrs />
+<ParAttrsN />
+</Adir>
+</Num>
+<T static="Yes">
+<VN name="s_Anrede" />
+</T>
+<T>
+<VL>\s</VL>
+</T>
+<T static="Yes">
+<VN name="s_Name" />
+</T>
+<T>
+<VL>,\s</VL>
+</T>
+<T>
+<VL>Geschlecht: </VL>
+</T>
+<T static="Yes">
+<VN name="s_Geschlecht" />
+</T>
+<T>
+<VL>,\s</VL>
+</T>
+<T>
+<VL>Alter: </VL>
+</T>
+<T static="Yes" format="#0.######">
+<EX>(String)n_Alter</EX>
+</T>
+<T>
+<VL>\sJahre</VL>
+</T>
+<T>
+<VL>, </VL>
+</T>
+<T>
+<VL>Größe: </VL>
+</T>
+<T static="Yes" format="0.00">
+<EX>(String)n_Groesse</EX>
+</T>
+<T>
+<VL> m, </VL>
+</T>
+<T>
+<VL>Gewicht: </VL>
+</T>
+<T static="Yes" format="#0.######">
+<EX>(String)n_Gewicht</EX>
+</T>
+<T>
+<VL> Kg.</VL>
+</T>
+</P>
+<P style="default" noBreak="No">
+<Num>
+<Adir>
+<FontAttrs />
+<ParAttrsN />
+</Adir>
+</Num>
+<If>
+<CON>
+<EX>(s_Geschlecht == "Mann" || s_Geschlecht == "männlich") &amp;&amp; (s_Fuehrerschein == "Ja" || s_Fuehrerschein == "ja")</EX>
+</CON>
+<Then>
+<T>
+<VL>Er hat einen Führerschein.</VL>
+</T>
+</Then>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Mann" || s_Geschlecht == "männlich") &amp;&amp; (s_Fuehrerschein == "Nein" || s_Fuehrerschein == "nein")</EX>
+</CON>
+<T>
+<VL>Er hat keinen Führerschein.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Frau" || s_Geschlecht == "weiblich") &amp;&amp; (s_Fuehrerschein == "Ja" || s_Fuehrerschein == "ja")</EX>
+</CON>
+<T>
+<VL>Sie hat einen Führerschein.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Frau" || s_Geschlecht == "weiblich") &amp;&amp; (s_Fuehrerschein == "Nein" || s_Fuehrerschein == "nein")</EX>
+</CON>
+<T>
+<VL>Sie hat keinen Führerschein.</VL>
+</T>
+</ElseIf>
+</If>
+</P>
+<P style="default" noBreak="No">
+<Num>
+<Adir>
+<FontAttrs />
+<ParAttrsN />
+</Adir>
+</Num>
+<If>
+<CON>
+<EX>(s_Geschlecht == "Mann" || s_Geschlecht == "männlich") &amp;&amp;  n_Alter &lt; 18</EX>
+</CON>
+<Then>
+<T>
+<VL>Er wächst noch.</VL>
+</T>
+</Then>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Mann" || s_Geschlecht == "männlich") &amp;&amp; n_Alter &gt;= 18 &amp;&amp; ((n_Gewicht/(n_Groesse*n_Groesse)) &gt;= 19 &amp;&amp; (n_Gewicht/(n_Groesse*n_Groesse)) &lt;= 25)</EX>
+</CON>
+<T>
+<VL>Er ist normalgewichtig.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Mann" || s_Geschlecht == "männlich") &amp;&amp; n_Alter &gt;= 18 &amp;&amp; ((n_Gewicht/(n_Groesse*n_Groesse)) &gt;= 25 &amp;&amp; (n_Gewicht/(n_Groesse*n_Groesse)) &lt;= 29)</EX>
+</CON>
+<T>
+<VL>Er ist übergewichtig.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Mann" || s_Geschlecht == "männlich") &amp;&amp; n_Alter &gt;= 18 &amp;&amp; ((n_Gewicht/(n_Groesse*n_Groesse)) &gt; 29)</EX>
+</CON>
+<T>
+<VL>Er leidet an Adipositas.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Frau" || s_Geschlecht == "weiblich") &amp;&amp; n_Alter &lt; 18</EX>
+</CON>
+<T>
+<VL>Sie wächst noch.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Frau" || s_Geschlecht == "weiblich") &amp;&amp; n_Alter &gt;= 18 &amp;&amp; ((n_Gewicht/(n_Groesse*n_Groesse)) &gt;= 19 &amp;&amp; (n_Gewicht/(n_Groesse*n_Groesse)) &lt;= 25)</EX>
+</CON>
+<T>
+<VL>Sie ist normalgewichtig.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Frau" || s_Geschlecht == "weiblich") &amp;&amp; n_Alter &gt;= 18 &amp;&amp; ((n_Gewicht/(n_Groesse*n_Groesse)) &gt;= 25 &amp;&amp; (n_Gewicht/(n_Groesse*n_Groesse)) &lt;= 29)</EX>
+</CON>
+<T>
+<VL>Sie ist übergewichtig.</VL>
+</T>
+</ElseIf>
+<ElseIf>
+<CON>
+<EX>(s_Geschlecht == "Frau" || s_Geschlecht == "weiblich") &amp;&amp; n_Alter &gt;= 18 &amp;&amp; ((n_Gewicht/(n_Groesse*n_Groesse)) &gt; 29)</EX>
+</CON>
+<T>
+<VL>Sie leidet an Adipositas.</VL>
+</T>
+</ElseIf>
+</If>
+</P>
+</Label>
+</ST>
+</Form>
